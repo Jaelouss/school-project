@@ -1,0 +1,150 @@
+@use '../../helpers' as *;
+
+.history {
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: remm(50);
+		padding: remm(50) remm(20) remm(50) remm(54);
+		@include laptop-above {
+			gap: remm(80);
+			padding: remm(100) remm(100) remm(100) remm(173);
+		}
+		@include desktop {
+			gap: remm(100);
+			padding: remm(150) remm(150) remm(150) remm(234);
+		}
+	}
+	&__item {
+		display: flex;
+		flex-direction: column;
+		row-gap: remm(30);
+		align-items: flex-start;
+		position: relative;
+		@include mobile-above-l {
+			flex-direction: row;
+			column-gap: remm(35);
+		}
+		@include laptop-above {
+			column-gap: remm(40);
+		}
+		@include desktop {
+			column-gap: remm(50);
+		}
+		&:not(:last-child)::before {
+			content: '';
+			position: absolute;
+			height: calc(100% + remm(50));
+			border: 1px solid var(--gray-15);
+			top: 51px;
+			left: -30px;
+			box-shadow: var(--shadow-lines);
+			animation: blink 2s infinite alternate ease-in-out;
+			@keyframes blink {
+				0% {
+					box-shadow: remm(-2) remm(2) remm(0) remm(1) var(--orange-80);
+				}
+				50% {
+					box-shadow: remm(-2) remm(2) remm(10) remm(10) var(--orange-80); // Додаємо розмиття
+				}
+				100% {
+					box-shadow: remm(-2) remm(2) remm(0) remm(1) var(--orange-80);
+				}
+			}
+			@include mobile-above-l {
+				top: 60px;
+			}
+			@include tablet-above {
+				top: 65px;
+			}
+			@include laptop-above {
+				top: 75px;
+				height: calc(100% + remm(80));
+			}
+			@include desktop {
+				top: 85px;
+				height: calc(100% + remm(100));
+			}
+		}
+
+		&-year-box {
+			display: flex;
+			flex-direction: row;
+			place-items: center;
+			gap: remm(20);
+			padding: fluid(30, 20) fluid(50, 24);
+			flex-shrink: 0;
+			position: relative;
+
+			&:before {
+				content: '';
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid var(--gray-15);
+				top: 50%;
+				left: 0%;
+				translate: -50% -50%;
+				background-color: var(--absolute-white);
+				position: absolute;
+				z-index: 1;
+			}
+			&:after {
+				content: '';
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				border: 2px solid var(--gray-15);
+				position: absolute;
+				top: 50%;
+				left: -31px;
+				translate: -50% -50%;
+				background-color: var(--absolute-white);
+				z-index: 1;
+			}
+		}
+		&-year {
+			font-family: var(--second-family);
+			color: var(--gray-10);
+			font-weight: 700;
+			font-size: remm(38);
+			@include laptop-above {
+				font-size: remm(48);
+			}
+			@include desktop {
+				font-size: remm(68);
+			}
+		}
+
+		&-text {
+			display: flex;
+			flex-direction: column;
+			gap: fluid(20, 12);
+			&-title {
+				text-align: left;
+				font-size: fluid(28, 22);
+			}
+			&-paragraph {
+				font-size: remm(16);
+				@include desktop {
+					font-size: remm(20);
+				}
+			}
+		}
+
+		&-horizontal {
+			&:after {
+				content: '';
+				display: flex;
+				border-top: var(--border-gray-15);
+				width: 22px;
+				position: absolute;
+				top: 50%;
+				left: -5%;
+				translate: -50% -50%;
+				box-shadow: var(--shadow-lines);
+				animation: blink 2s infinite alternate ease-in-out;
+			}
+		}
+	}
+}
